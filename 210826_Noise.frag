@@ -8,10 +8,7 @@ uniform float u_time;
 #define TWO_PI 6.28318530718;
 #define PI 3.14159265359;
 
-const int N_ROWS=4;
-const int N_COLS=4;
-
-vec3 getColor(float i,float centerDistance){
+vec3 getColor(float i){
     float r,g,b;
     
     float A=1.;// Amplitude
@@ -19,11 +16,15 @@ vec3 getColor(float i,float centerDistance){
     float M=A/2.;// Center point
     float P=TWO_PI;// Period
     
-    float mainWave=M+M*sin(i);
+    float monochrome=sin(i);
     
-    r=mainWave+.2+centerDistance*.8;
-    g=mainWave;
-    b=mainWave+.4-centerDistance*.2;
+    if(monochrome!=.5);
+    
+    monochrome=0.;
+    
+    r=monochrome;
+    g=monochrome;
+    b=monochrome;
     
     return vec3(r,g,b);
 }
@@ -31,7 +32,15 @@ vec3 getColor(float i,float centerDistance){
 void main(){
     vec2 position=gl_FragCoord.xy/u_resolution;
     
-    vec3 color=vec3(1.,0.,0.);
+    vec2 center=vec2(.5);
+    float dist=distance(center,position);
+    
+    float rep=70000000000000000000.;
+    
+    float value=sin(dist*rep);
+    value*=sin(position.x*rep);
+    
+    vec3 color=vec3(value);
     
     gl_FragColor=vec4(color,1.);
 }
