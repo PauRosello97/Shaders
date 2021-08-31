@@ -19,7 +19,7 @@ vec3 getColor(float i){
     float M=A/2.;// Center point
     float P=TWO_PI;// Period
     
-    float monochrome=M+M*sin(2.*i);
+    float monochrome=M+M*sin(5.*i);
     
     r=monochrome;
     g=monochrome;
@@ -46,14 +46,14 @@ void main(){
         float n=float(i);
         
         float radius=.00000003*float(n);
-        float angle=1.2*float(n);
+        float angle=1.5*float(n);
         float x=.5+radius*sin(angle);
         float y=.5+radius*cos(angle);
         
         vec2 p=vec2(x,y);
         
-        float scale=dist*1.00000023;
-        float rep=dist*1.;
+        float scale=dist*1.00000043;
+        float rep=dist*50.;
         
         value+=chord(position,p,scale,rep);
     }

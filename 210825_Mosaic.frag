@@ -100,9 +100,9 @@ vec3 getColor(float i,float centerDistance){
     
     float mainWave=M+M*sin(i);
     
-    r=mainWave+.2+centerDistance*.8;
+    r=mainWave+.2+centerDistance*.2;
     g=mainWave;
-    b=mainWave+.4-centerDistance*.2;
+    b=mainWave-centerDistance*.2;
     
     return vec3(r,g,b);
 }
@@ -137,7 +137,7 @@ void main(){
     float value=0.;
     
     for(int i=0;i<N_ROWS*N_COLS;i++){
-        value+=chord(position,p[i],.2,centerDistance*30.);
+        value+=chord(position,p[i],.2,centerDistance*u_time);
     }
     
     vec3 color=getColor(value*7.,centerDistance);
